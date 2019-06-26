@@ -35,7 +35,7 @@ public class IngresoVista {
     
     public IngresoVista() {
     }
-
+   
     public void setListaIngreso(List<Ingreso> listaIngreso) {
         this.listaIngreso = listaIngreso;
     }

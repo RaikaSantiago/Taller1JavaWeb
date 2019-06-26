@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>Ingresos</title>
             </f:facet>
         </h:head>
 
@@ -42,8 +42,9 @@
                     <p:dataTable var="i" value="#{IngresoVista.listaIngreso}"  rows="10"
                  paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 rowsPerPageTemplate="5,10,15">
-                     <p:column headerText="Empleado">
+                 rowsPerPageTemplate="5,10,15"
+                 rowKey="#{i.numeroingreso}">
+                     <p:column headerText="Ingresos">
                          <h:outputText value="#{i.empleadoingreso}" />
                      </p:column>
 
