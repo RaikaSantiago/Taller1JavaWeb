@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Empleado</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>    
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                        <h:form id="formularioEmpleado">
+                        <p:messages id="message" showDetail="true" />
+                        <p:panelGrid columns="4" id="panel">
+                            <h:outputText value ="Cedula:"/>
+                            <p:inputText id="txtCedula" binding="#{empleadoVista.txtcedulaEmpleado}"/>
+                            <h:outputText value="Nombre:"/>
+                            <p:inputText id="txtNombre" binding="#{empleadoVista.txtNombreEmpleado}"/>
+                            <h:outputText value="Apellido:"/>
+                            <p:inputText id="txtApellido" binding="#{empleadoVista.txtApellidoEmpleado}"/>
+                            <h:outputText value="Telefono:"/>
+                            <p:inputText id="txtTelefono" binding="#{empleadoVista.txtTelefonoEmpleado}"/>
+                            <h:outputText value="Estado:"/>
+                            <p:selectOneMenu id="cmbEstado" binding="#{empleadoVista.cmbEstadoEmpleado}">
+                                <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO"/>
+                                <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        
+                        <p:commandButton value="Registrar" actionListener="#{empleadoVista.registrarEmpleado()}" update="formularioEmpleado"/>
+                        <p:commandButton value="Modificar" actionListener="#{empleadoVista.modificarEmpleado()}" update="formularioEmpleado"/>
+                        <p:commandButton value="Eliminar" actionListener="#{empleadoVista.eliminarEmpleado()}" update="formularioEmpleado"/>
+
+                    
+                        <p:dataTable var="e" value="#{empleadoVista.listaEmpleado}"  rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     selection="#{empleadoVista.selectedEmpleado}"
+                                     selectionMode="single"
+                                     rowKey="#{e.codigoempleado}"
+                                     >
+                            <p:ajax event="rowSelect"
+                                    listener="#{empleadoVista.seleccionarEmpleado}"
+                                    update=":formularioEmpleado:panel"
+                                    />
+                            <p:column headerText="Cedula">
+                                <h:outputText value="#{e.cedulaempleado}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{e.nombreempleado}" />
+                            </p:column>
+                            
+                            <p:column headerText="Apellido">
+                                <h:outputText value="#{e.apellidoempleado}" />
+                            </p:column>
+                            
+                            <p:column headerText="Telefono">
+                                <h:outputText value="#{e.telefonoempleado}" />
+                            </p:column>
+                            
+                            <p:column headerText="Cargo">
+                                <h:outputText value="#{e.codigocargo.nombrecargo}" />
+                            </p:column>
+                            
+                            <p:column headerText="Estado">
+                                <h:outputText value="#{e.estadoempleado}" />
+                            </p:column>
+
+                            <p:column headerText="Codigo">
+                                <h:outputText value="#{e.codigoempleado}" />
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
