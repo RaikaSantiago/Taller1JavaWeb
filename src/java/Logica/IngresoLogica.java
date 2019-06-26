@@ -23,7 +23,28 @@ public class IngresoLogica implements IngresoLogicaLocal {
 
     @Override
     public void registarIngreso(Ingreso i) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if (i == null) {
+            throw new Exception("El empleado  no tiene ingreso");
+        }
+        if (i.getHoraentradaingreso()==null) {
+             throw new Exception ("La hora de entrada es Obligatoria");  
+        }
+        if (i.getHorasalidaingreso()==null) {
+             throw new Exception ("La hora de salida es Obligatoria");  
+        }
+        if (i.getAutorizadoingreso()==null) {
+             throw new Exception ("Falta la autorización del ingreso");  
+        }
+        if (i.getEmpleadoingreso()==null) {
+             throw new Exception ("Falta el codigo del empleado");  
+        }
+        if (i.getContratistaingreso()==null) {
+             throw new Exception ("Falta el codigo del contratista");  
+        }
+        if (i.getFechaingreso().equals("")){
+          throw new Exception ("Ingresar la fecha");
+        }
+        ingresoDAO.create(i);
     }
 
     @Override

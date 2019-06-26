@@ -25,6 +25,8 @@ public interface IngresoFacadeLocal {
     Ingreso find(Object id);
 
     List<Ingreso> findAll();
+    
+    Ingreso findIngreso(Long ni);
 
     List<Ingreso> findRange(int[] range);
 
