@@ -6,6 +6,7 @@
 package Vista;
 
 import Logica.IngresoLogica;
+import Logica.IngresoLogicaLocal;
 import Modelo.Ingreso;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +30,7 @@ import org.primefaces.event.SelectEvent;
 public class IngresoVista {
     
     @EJB
-    private IngresoLogica ingresoLogica;
+    private IngresoLogicaLocal ingresoLogica;
     
     private List<Ingreso> listaIngreso;
     
@@ -41,7 +42,7 @@ public class IngresoVista {
     }
 
     public List<Ingreso> getListaIngreso() {
-        listaIngreso = ingresoLogica.consultarIngreso();
+        listaIngreso = ingresoLogica.consultarIngresos();
         return listaIngreso;
     }
     
